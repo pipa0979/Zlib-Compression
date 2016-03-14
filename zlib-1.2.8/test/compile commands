@@ -1,0 +1,5 @@
+invalid conversion from ‘gzFile {aka void*}’ to ‘void**’ [-fpermissive]
+
+./compression < compression.cpp > compression.cpp.gz
+
+g++ compression.cpp -o compression -lz
