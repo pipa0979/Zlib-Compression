@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <zlib.h>
 #include <limits.h> /* for PATH_MAX */
+#include <iostream>
+using namespace std;
 
 int compressFile(FILE *in, const char * const outFileName)
 {
    /* Buffer to hold data read */
    char buf[BUFSIZ] = { 0 };
    size_t bytes_read = 0;
-   gzFile out = gzopen(outFileName, "wb");
+   gzFile out = gzopen(outFileName, "ab");
    if (!out)
      {
         /* Handle error */
@@ -32,13 +34,14 @@ int compressFile(FILE *in, const char * const outFileName)
    return 0;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
    char outFileName[PATH_MAX] = { 0 };
-   FILE *fp = fopen(__FILE__, "r");
+   FILE *fp = fopen(argv[1], "r");
+
    if (fp)
      {
-        sprintf(outFileName, "%s.gz", __FILE__);
+        sprintf(outFileName, "%s.gz", argv[1]);
         if (compressFile(fp, outFileName) != 0)
           {
              fclose(fp);

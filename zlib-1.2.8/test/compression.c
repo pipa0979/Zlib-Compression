@@ -33,6 +33,7 @@ int compressFile(FILE *in, const char * const outFileName)
 
 int main()
 {
+  
    char outFileName[PATH_MAX] = { 0 };
    FILE *fp = fopen(__FILE__, "r");
    if (fp)
